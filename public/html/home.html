@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel="shortcut icon" href="/public/img/logo1.png" type="image/x-icon">
+      <title>HOME</title>
+      <script src="https://cdn.tailwindcss.com"></script>
+      <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+<!-- IMPORTACIÓN DE LA FUENTE JET BRAINS -->
+      <style>
+         @import url('https://fonts.cdnfonts.com/css/jetbrains-mono');
+      </style>
+<!-- CREACIÓN DE VARIABLES/CLASES NUEVAS PARA TAILWIND (creación de un color, una fuente y una "medida") -->
+      <script>
+         tailwind.config = {
+           theme: {
+             extend: {
+               colors: {
+                 cdmBlue: '#7dafff',
+                 cdmSkyBlue: '#a0e8ee',
+               },
+               fontFamily: {
+                 brains: "JetBrains Mono"
+               },
+               height:{
+                 h70v:"70vh"
+               }
+             }
+           }
+         }
+      </script>
+   </head>
+   <body>
+<!-- CONTAINER PRINCIPAL -->
+      <div class="h-screen bg-white dark:bg-zinc-900 flex justify-between flex-col w-full">
+<!-- NAVBAR -->
+         <div class="w-full">
+            <nav class="bg-stone-50 border-gray-200 dark:bg-neutral-800  w-full" id="1">
+               <div class="mx-auto p-4">
+                  <div class="flex justify-between">
+                     <div class="flex ">
+                        <img src="/public/img/logo1.png" class="h-8 mr-3" alt="Codemeu-Logo" />
+                        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white font-brains">CODEMEU</span>
+                     </div>
+                     <button id="dropdownInformationButton" data-dropdown-toggle="dropdownInformation"
+                        class="text-black font-brains bg-neutral-300 hover:bg-neutral-400 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-neutral-600 dark:hover:bg-neutral-700 dark:focus:ring-neutral-800 dark:text-white"
+                        type="button">
+                        USUARIO
+                        <svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor"
+                           viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                     </button>
+    <!-- DROPDOWN USUARIO -->
+                     <div id="dropdownInformation"
+                        class="z-10 hidden bg-neutral-300 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-neutral-600 dark:divide-neutral-600">
+                        <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+                           <div id="tierInfo" class="font-medium truncate font-brains">name@flowbite.com</div>
+                        </div>
+                        <div class="py-2">
+                           <a href="/logout"
+                              class="block px-4 py-2 text-sm text-gray-700 hover:bg-neutral-200 dark:hover:bg-neutral-600 dark:text-gray-400 dark:hover:text-white">Log
+                           Out</a>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </nav>
+<!-- BODY -->
+            <div class="w-full flex flex-col justify-between p-2 text-center  font-brains">
+               <div class="lg:mt-10">
+                  <h5 class="mb-2 text-3xl font-bold text-gray-900 dark:text-white mt-10">Welcome to CODEMEU</h5>
+                  <p class="mb-5 text-base text-gray-500 sm:text-lg dark:text-gray-400">Codemeu improves the developing and desingning of your projects.</p>
+                  <p class="mb-5 text-base text-gray-500 sm:text-lg dark:text-gray-400">Join a room or create your own room and start working now!</p>
+                <!-- BUSCADOR/CREADOR DE SALAS -->
+                  <div class="flex justify-center p-4">
+                     <div class="flex  justify-between w-96 items-center ">
+                        <label for="simple-search" class="sr-only">Search</label>
+                        <div class="relative w-9/12 ">
+                           <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                              <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                 <path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path>
+                              </svg>
+                           </div>
+                           <input type="text" id="txtSearch" class="bg-gray-50  border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full pl-10 p-2.5  dark:bg-neutral-600 dark:hover:bg-neutral-700 dark:focus:ring-neutral-800 dark:text-white" placeholder="Search Room" required>
+                        </div>
+                        <button id="btnSearch" class="p-2.5 ml-2  text-sm font-medium  rounded-lg text-black bg-neutral-300 hover:bg-neutral-400 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium  text-center dark:bg-neutral-600 dark:hover:bg-neutral-700 dark:focus:ring-neutral-800 dark:text-white">
+                           <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                           </svg>
+                           <span class="sr-only">Search</span>
+                        </button>
+                        <div>
+                           <button id="btnNew" type="button" class="flex items-center justify-center m-2 rounded-lg w-10 h-10 text-black bg-neutral-300 hover:bg-neutral-400 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium  text-center dark:bg-neutral-600 dark:hover:bg-neutral-700 dark:focus:ring-neutral-800 dark:text-white">
+                              <svg aria-hidden="true" class="w-6 h-6 transition-transform group-hover:rotate-45" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                              </svg>
+                              <span class="sr-only">Create room</span>
+                           </button>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+<!-- FOOTER -->
+         <footer  class="bg-white  w-full border border-gray-200 shadow flex-col md:flex sm:flex-row md:justify-between md:p-6 dark:bg-neutral-700 dark:border-gray-400">
+            <div class="w-full">
+               <h2 class="text-black dark:text-white text-xl font-brains ms-5 mt-5 ">ABOUT CODEMEU</h2>
+               <p class="  text-black dark:text-gray-300 text-justify sm:m-5  m-4 font-brains"><span class="text-cdmBlue">CODEMEU</span> is a project created and managed by two students of IES San Clemente as ther final DAW project. <span class="text-cdmBlue">CODEMEU</span> was created with the purpose of making collaborative programming
+                  posible and accesible to all users, regardless of the platform they use. On the actual version of the project we provide collaborative editing, uploading and downloading of code, theme selector for the editor, code highlighting, autoclose tags, CSS and JS code completion and many more features that we will add and improve in the future.
+               </p>
+            </div>
+            <div class="flex justify-center pb-5 sm:pb-1">
+               <iframe class="sm:ms-5  md:ms-5 md:m-5 rounded-xl dark:ring ring-cdmSkyBlue w-80 h-40" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2923.7194984910834!2d-8.549812823333369!3d42.878764302173074!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd2efe419fe52f15%3A0x63b8a543bf549f26!2sI.E.S.%20San%20Clemente%20%5BInstituto%20de%20Formaci%C3%B3n%20Profesional%5D%20(Santiago%20de%20Compostela)!5e0!3m2!1ses!2ses!4v1686306270593!5m2!1ses!2ses"  allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+         </footer>
+      </div>
+   </body>
+<!-- SCRIPT FLOWBITE(DROPDOWNS + TOOLTIPS) + SCRIPT PROPIO(creación de salas + buscador) -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+   <script src="/public/js/home.js"></script>
+</html>

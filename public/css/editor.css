@@ -1,0 +1,9 @@
+body{
+    background-color: Canvas;
+    color: canvasText;
+    color-scheme: light dark;
+}
+
+.h-editor{
+    height: 75vh;
+}

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/public/css/editor.css" />
+  <link rel="shortcut icon" href="/public/img/logo1.png" type="image/x-icon" />
+  <title>EDITOR</title>
+  <!-- IMPORTACIÓN DE PUSHER, CODEMIRROR, TEMAS DE CODEMIRROR Y TAILWIND-->
+  <script src="https://js.pusher.com/7.2/pusher.min.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/javascript/javascript.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/css/css.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/xml/xml.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/mode/htmlmixed/htmlmixed.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/hint/show-hint.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/hint/html-hint.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/hint/css-hint.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/hint/javascript-hint.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/hint/anyword-hint.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/edit/closebrackets.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/edit/closetag.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/addon/hint/show-hint.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/dracula.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/abbott.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/lucario.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/monokai.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/erlang-dark.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/base16-light.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/theme/yonce.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.css"/>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.css" rel="stylesheet" />
+</head>
+
+<body>
+<!-- NAVBAR -->
+
+  <nav class="bg-stone-50 border-gray-200 dark:bg-neutral-800 h-1/6" id="1">
+    <div class="mx-auto p-4">
+      <div class="flex justify-between">
+
+        
+          <a href="/" class="flex ">
+            <img src="/public/img/logo1.png" class="h-8 mr-3 cursor-pointer" alt="Codemeu Logo" />
+            <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white cursor-pointer">CODEMEU</span>
+          
+          </a>
+        
+
+
+
+        <button id="dropdownInformationButton" data-dropdown-toggle="dropdownInformation"
+          class="text-black bg-neutral-300 hover:bg-neutral-400 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center dark:bg-neutral-600 dark:hover:bg-neutral-700 dark:focus:ring-neutral-800 dark:text-white"
+          type="button">USUARIO<svg class="w-4 h-4 ml-2" aria-hidden="true" fill="none" stroke="currentColor"
+            viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+          </svg></button>
+
+        <!-- DROPDOWN -->
+        <div id="dropdownInformation"
+          class="z-10 hidden bg-neutral-300 divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-neutral-600 dark:divide-neutral-600">
+          <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+            <div id="tierInfo" class="font-medium truncate">name@flowbite.com</div>
+          </div>
+          <div class="py-2">
+            <a href="/logout"
+              class="block px-4 py-2 text-sm text-gray-700 hover:bg-neutral-200 dark:hover:bg-neutral-600 dark:text-gray-400 dark:hover:text-white">Log
+              Out</a>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+  </nav>
+
+
+<!-- SELECTOR DE LENGUAJE(HTML, CSS, JS) -->
+
+  <div class="flex justify-center">
+    <div class="flex w-11/12 mt-6">
+      <button
+        class="bg-orange-400  border-s border-t border-gray-400 hover:bg-orange-400 transition duration-500 ease-in-out text-black dark:text-white font-bold py-2 px-4 rounded-t-lg"
+        id="htmlEditor">
+        HTML
+      </button>
+      <button
+        class="bg-slate-100 dark:bg-neutral-700 border-x border-t border-gray-400 hover:bg-blue-500 transition duration-500 ease-in-out text-black dark:text-white font-bold py-2 px-4 rounded-t-lg"
+        id="cssEditor">
+        CSS
+      </button>
+      <button
+        class="bg-slate-100 dark:bg-neutral-700 border-e border-t border-gray-400 hover:bg-amber-400 transition duration-500 ease-in-out text-black dark:text-white font-bold py-2 px-4 rounded-t-lg"
+        id="jScriptEditor">
+        JAVASCRIPT
+      </button>
+    </div>
+  </div>
+
+
+<!-- EDITOR DE CODIGO -->
+  <form class="flex justify-center h-5/6">
+    <div
+      class="w-11/12 h-full mb-4 border border-gray-200 rounded-tr-lg rounded-br-lg rounded-bl-lg bg-gray-50 dark:bg-neutral-700 dark:border-gray-600 mx-2">
+      <div class="flex items-center justify-between px-3 py-2 border-b dark:border-gray-600">
+        <div class="flex flex-wrap items-center divide-gray-200 sm:divide-x dark:divide-gray-600">
+          <div class="flex items-center space-x-1 sm:pr-4">
+            <button id="downloadAll" type="button" data-tooltip-target="tooltip-bottom-downloadAll" data-tooltip-placement="bottom"
+              class="p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-neutral-600">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 7.5h-.75A2.25 2.25 0 004.5 9.75v7.5a2.25 2.25 0 002.25 2.25h7.5a2.25 2.25 0 002.25-2.25v-7.5a2.25 2.25 0 00-2.25-2.25h-.75m-6 3.75l3 3m0 0l3-3m-3 3V1.5m6 9h.75a2.25 2.25 0 012.25 2.25v7.5a2.25 2.25 0 01-2.25 2.25h-7.5a2.25 2.25 0 01-2.25-2.25v-.75"></path>
+              </svg>
+              <div id="tooltip-bottom-downloadAll" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-black dark:text-white bg-stone-300 dark:bg-neutral-800 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                Download All
+                <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+              <span class="sr-only">Download-All</span>
+            </button>
+            </button>
+            <button id="downloadCode" type="button" data-tooltip-target="tooltip-bottom-download" data-tooltip-placement="bottom"
+              class="p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-neutral-600">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25H15M9 12l3 3m0 0l3-3m-3 3V2.25"></path>
+              </svg>
+              <div id="tooltip-bottom-download" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-black dark:text-white bg-stone-300 dark:bg-neutral-800 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                Download File
+                <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+              <span class="sr-only">Download</span>
+            </button>
+            <button id="uploadCode" type="button" data-tooltip-target="tooltip-bottom-upload" data-tooltip-placement="bottom"
+              class="p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-neutral-600">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 8.25H7.5a2.25 2.25 0 00-2.25 2.25v9a2.25 2.25 0 002.25 2.25h9a2.25 2.25 0 002.25-2.25v-9a2.25 2.25 0 00-2.25-2.25H15m0-3l-3-3m0 0l-3 3m3-3V15"></path>
+              </svg>
+              <div id="tooltip-bottom-upload" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-black dark:text-white bg-stone-300 dark:bg-neutral-800 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                Upload File
+                <div class="tooltip-arrow" data-popper-arrow></div>
+            </div>
+              <span class="sr-only">Upload</span>
+            </button>
+            <button id="reload" type="button" data-tooltip-target="tooltip-reload" data-tooltip-placement="bottom"
+            class="p-2 text-gray-500 rounded cursor-pointer hover:text-gray-900 hover:bg-gray-100 dark:text-gray-400 dark:hover:text-white dark:hover:bg-neutral-600">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99"></path>
+            </svg>
+            <div id="tooltip-reload" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-black dark:text-white bg-stone-300 dark:bg-neutral-800 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+              Resync Code
+              <div class="tooltip-arrow" data-popper-arrow></div>
+          </div>
+            <span class="sr-only">Reload</span>
+          </button>
+            <input id="uploadCodeInput" type="file" class="hidden"/>
+            <input id="nativeColorPicker" type="color" class="w-12"/>
+          </div>
+        </div>
+      </div>
+      <div class="px-4 py-2 bg-white rounded-b-lg dark:bg-neutral-600" id="HTML">
+        <textarea id="editorHTML" rows="8"
+          class="block w-full h-editor px-0 text-sm text-gray-800 bg-white border-0 dark:bg-neutral-600 focus:outline-0 dark:text-white dark:placeholder-gray-400 px-2 py-2"
+          placeholder="Write your code here..." required></textarea>
+      </div>
+      <div class="px-4 py-2 bg-white rounded-b-lg dark:bg-neutral-600 hidden" id="CSS">
+        <textarea id="editorCSS" rows="8"
+          class="block w-full h-editor px-0 text-sm text-gray-800 bg-white border-0 dark:bg-neutral-600 focus:outline-0 dark:text-white dark:placeholder-gray-400 px-2 py-2"
+          placeholder="Write your code here..." required></textarea>
+      </div>
+      <div class="px-4 py-2 bg-white rounded-b-lg dark:bg-neutral-600 hidden" id="JS">
+        <textarea id="editorJS" rows="8"
+          class="block w-full h-editor px-0 text-sm text-gray-800 bg-white border-0 dark:bg-neutral-600 focus:outline-0 dark:text-white dark:placeholder-gray-400 px-2 py-2"
+          placeholder="Write your code here..." required></textarea>
+      </div>
+    </div>
+  </form>
+
+<!-- PREVISUALIZACIÓN -->
+  <div class="flex justify-center mt-3">
+    <div
+      class="flex justify-between w-11/12 h-14 border border-gray-200 rounded-tr-lg rounded-tl-lg bg-gray-50 dark:bg-neutral-700 dark:border-gray-600 mx-2">
+      <div
+        class="w-full lg:w-11/12 h-8 border border-gray-200 rounded-full bg-gray-50 dark:bg-neutral-600 dark:border-gray-600 mt-3 ms-1 me-1">
+        <h3 class="ms-2 mt-0.5 align-text-center">https://codemeu.es/liveEditor</h3>
+      </div>
+      <div class="w-0 me-4 justify-end items-center hidden lg:flex w-1/12">
+        <img src="/public/img/closeBar.png" alt="closeBar" class="h-6 w-fit">
+      </div>
+      
+    </div>
+  </div>
+
+  <div class="flex justify-center">
+    <div
+      class="w-11/12 h-full mb-4 border border-gray-200 rounded-br-lg rounded-bl-lg dark:bg-neutral-600 dark:border-gray-600 mx-2">
+      <div class="outputeditor flex justify-center">
+        <iframe id="output-frame" class="w-full h-80 rounded-lg m-3"></iframe>
+      </div>
+    </div>
+  </div>
+
+<!-- SCRIPT FLOWBITE(DROPDOWNS + TOOLTIPS) + SCRIPT PROPIO -->
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+<script src="/public/js/editorNoPremium.js"></script>
+
+</html>

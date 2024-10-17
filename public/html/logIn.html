@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="/public/css/logIn.css">
+  <link rel="shortcut icon" href="/public/img/logo1.png" type="image/x-icon">
+  <title>LogIn</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://code.jquery.com/jquery-3.7.0.min.js"></script>
+
+<!-- IMPORTACIÓN DE LA FUENTE JET BRAINS -->
+  <style>
+    @import url('https://fonts.cdnfonts.com/css/jetbrains-mono');
+  </style>
+<!-- CREACIÓN DE VARIABLES/CLASES NUEVAS PARA TAILWIND (creación de un color, una fuente y una "medida") -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cdmBlue: '#7dafff',
+          },
+          fontFamily: {
+            brains: "JetBrains Mono"
+          },
+          spacing: {
+            '10vh': '13vh'
+          }
+
+        }
+      }
+    }
+  </script>
+</head>
+<!-- CONTAINER PRINCIPAL -->
+<body>
+<!-- TOAST(elemento de tailwind) AVISO DE USO DE COOKIES -->
+<div class="flex justify-center md:justify-start">
+  <div id="toast-default" class="flex md:absolute items-center mt-3 ms-3 w-full max-w-xs p-4 rounded-lg shadow text-gray-400 bg-neutral-600 border-2 border-cdmBlue" role="alert">
+
+    <div class="ml-3 text-sm font-normal">Codemeu only uses functional cookies that are needed by the site.</div>
+    <button type="button" class="ml-auto -mx-1.5 -my-1.5  text-gray-400 hover:text-gray-900 rounded-lg focus:ring-2 focus:ring-gray-300 p-1.5 hover:bg-gray-100 inline-flex h-8 w-8 text-gray-500 hover:text-white bg-neutral-800 hover:bg-neutral-700" data-dismiss-target="#toast-default" aria-label="Close">
+        <span class="sr-only">Close</span>
+        <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+    </button>
+</div>
+</div>
+
+<!-- FONDO DINAMICO -->
+<div class="flex flex-col justify-between">
+  <div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+    <div class="wave"></div>
+  </div>
+
+<!-- PARTE PERRO LOGO CODEMEU -->
+  <div class="flex justify-center">
+    <img src="/public/img/logo1.png" alt="perro1" class="h-40 w-40 mt-12">
+  </div>
+
+<!-- FORM LOGIN-->
+  <div class="mx-auto max-w-screen-xl pt-3 sm:pt-6 lg:px-8" id="signInForm">
+    <div class="mx-auto max-w-lg shadow-md shadow-inner shadow-indigo-500/100 rounded-xl border-2 border-cyan-600  ">
+      <img class="text-center px-6 pt-6" src="/public/img/logo.png" alt="LogoCodemeu"></img>
+
+      <form action="/auth" method="POST" class="space-y-4 rounded-lg p-4  sm:p-6 lg:p-8">
+        <p class="text-center text-lg font-medium text-white">Sign in to your account</p>
+        <p class="text-center text-lg font-medium p-1 text-red-500" id="info-msg"></p>
+
+        <div>
+          <label for="email" class="sr-only">Email</label>
+
+          <div class="relative">
+            <input type="text"
+              class="w-full rounded-lg border-cyan-300 border-2 p-4 pe-12 text-sm shadow-sm caret-cyan-600"
+              placeholder="Enter username" id="usernameLog" name="username" />
+            <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
+              <img src="/public/img/userIco.svg" alt="svg1" class="h-6 w-6">
+            </span>
+          </div>
+
+
+        </div>
+
+        <div>
+          <label for="password" class="sr-only">Password</label>
+
+          <div class="relative">
+            <input type="password"
+              class="w-full rounded-lg border-2 border-cyan-300 p-4 pe-12 text-sm shadow-sm caret-cyan-600"
+              placeholder="Enter password" id="password" name="password" />
+
+            <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
+              <img src="/public/img/eye1.svg" alt="openI" class="h-6 w-6 cursor-pointer" id="opEye">
+            </span>
+          </div>
+        </div>
+
+        <button type="submit"
+          id="btnSignIn"
+          class="block w-full rounded-lg bg-cyan-700 px-5 py-3 text-sm font-medium text-white bg-cyan-700">
+          Sign In
+        </button>
+
+        <p class="text-center text-sm text-cyan-500 font-sans font-bold flex justify-center">
+          No account?
+          <a class="underline cursor-pointer mx-2" id="goToSignUp">Sign up</a>
+          
+          <a href="/logingithub" class="underline cursor-pointer"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style="fill:#06b6d4;"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a>
+        </p>
+        <label for="error" class=" hidden"></label>
+      </form>
+    </div>
+  </div>
+
+
+<!-- FORM SIGN UP -->
+  <div class="mx-auto max-w-screen-xl mt-2 sm:px-6 lg:px-8 hidden" id="signUpForm">
+    <div class="mx-auto max-w-lg shadow-md shadow-inner shadow-indigo-500/100 rounded-xl border-2 border-cyan-600">
+      <img class="text-center p-6" src="/public/img/logo.png" alt="LogoCodemeu"></img>
+
+      <form action="/signup" method="POST" class="space-y-4 rounded-lg p-4 ">
+        <p class="text-center text-lg font-medium">Create an account</p>
+        <div>
+          <label for="email" class="sr-only">Email</label>
+
+          <div class="relative">
+            <input type="text"
+              class="w-full rounded-lg border-cyan-300 border-2 p-4 pe-12 text-sm shadow-sm caret-cyan-600"
+              placeholder="Enter username" id="usernameCreate" name="usernameCreate" />
+            <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
+              <img src="/public/img/userIco.svg" alt="svg1" class="h-6 w-6">
+            </span>
+          </div>
+
+
+        </div>
+
+        <div>
+          <label for="password" class="sr-only">Password</label>
+
+          <div class="relative">
+            <input type="password"
+              class="w-full rounded-lg border-2 border-cyan-300 p-4 pe-12 text-sm shadow-sm caret-cyan-600"
+              placeholder="Enter password" id="passwordCreate" name="passwordCreate" minlength="8" />
+              
+            <span class="absolute inset-y-0 end-0 grid place-content-center px-4">
+              <img src="/public/img/eye1.svg" alt="openI" class="h-6 w-6 cursor-pointer" id="opEye2">
+            </span>
+          </div>
+        </div>
+
+        <p class="ms-1 text-sm font-medium" id="confirm">Confirm your password :</p>
+
+        <div>
+          <label for="password" class="sr-only">Password</label>
+
+          <div class="relative">
+            <input type="password"
+              class="w-full rounded-lg border-2 border-cyan-300 p-4 pe-12 text-sm shadow-sm caret-cyan-600"
+              placeholder="Retype the password" id="password2" name="password" />
+          </div>
+        </div>
+
+        <button type="submit" id="btnSignUp"
+          class="block w-full rounded-lg bg-cyan-700 px-5 py-3 text-sm font-medium text-white bg-cyan-700 cursor-not-allowed"
+          disabled="true">
+          Sign Up
+        </button>
+
+        <p class="text-center text-sm text-cyan-500 font-sans font-bold">
+          You alredy have an account?
+          <a class="underline cursor-pointer" id="goToSignIn">Sign In</a>
+        </p>
+        <label for="error" class=" hidden"></label>
+      </form>
+    </div>
+  </div>
+
+
+
+</div>
+
+</body>
+<!-- SCRIPT FLOWBITE(DROPDOWNS + TOOLTIPS) + SCRIPT PROPIO(comprobación de contraseñas + alterar entre log in y sign up + tratamiento de información de usuarios) -->
+<script src="/public/js/logIn.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/1.6.5/flowbite.min.js"></script>
+
+
+</html>
