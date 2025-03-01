@@ -26,7 +26,7 @@ const client = new Discord.Client({
 })
 
 const saltRounds = 10;
-client.on('message', msg => {
+/*client.on('message', msg => {
     if (msg.content == 'ping') {
         msg.reply('Pong!');
     }
@@ -42,14 +42,14 @@ client.once('ready', () => {
     botListo = true;
 });
 
-
+*/
 let httpServer = app.listen(8080, () => console.log(`Listening on ${ 8080 }`));
 
 const pusherServer = new Pusher({
-    appId: "1595887",
-    key: "b73d868c1e97c18d9977",
-    secret: "1e907a7c8850413ef1c8",
-    cluster: "eu",
+    appId: process.env.APP_ID,
+    key: process.env.KEY,
+    secret: process.env.SECRET,
+    cluster: process.env.CLUSTER,
 });
 
 
@@ -263,9 +263,9 @@ function pusherAuth(request, response) {
     console.log(socketId)
     console.log(channelName)
     console.log(request.cookies.auth)
-    if (request.cookies.auth.id == undefined || request.cookies.auth.username == undefined) {
-        response.sendStatus(403)
-    } else {
+    // if (request.cookies.auth.id == undefined || request.cookies.auth.username == undefined) {
+    //     response.sendStatus(403)
+    // } else {
 
         const user = {
             id: request.cookies.auth.id,
@@ -275,7 +275,7 @@ function pusherAuth(request, response) {
 
         response.send(authResponse);
         console.log(authResponse)
-    }
+    //}
 
 
 

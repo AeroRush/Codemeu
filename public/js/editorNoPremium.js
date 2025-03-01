@@ -13,7 +13,7 @@ const tierInfo = document.getElementById("tierInfo");
 
 //Pusher.logToConsole = true
 
-const pusher = new Pusher('b73d868c1e97c18d9977', {
+const pusher = new Pusher('cc97ad76ed9f0f46556b', {
     cluster: 'eu',
     authEndpoint: "/pusher/user-auth"
 });
